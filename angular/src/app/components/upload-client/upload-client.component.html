@@ -1,0 +1,9 @@
+<p-fileUpload name="myClientFile[]" (onSelect)="onSelect($event)" 
+        multiple="multiple" accept=".json" maxFileSize="1000000"
+        [showUploadButton]="false" (onClear)="onCancelClick()">
+    <ng-template *ngIf="hasFile" pTemplate type="content">
+        <ul>
+            <li  *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+        </ul>
+    </ng-template>        
+</p-fileUpload>
