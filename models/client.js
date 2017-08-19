@@ -34,3 +34,7 @@ module.exports.getAllClients = (callback) => {
 module.exports.addClient = (newClient, callback) => {
     newClient.save(callback);
 };
+
+module.exports.deleteClient = (id, callback) => {
+    Client.remove(id, callback);
+};

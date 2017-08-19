@@ -36,13 +36,41 @@ router.post("/addClients", (req, res) => {
     });
 });
 
+//Add Single Client
+router.post("/addClient", (req, res) => {
+    let newClient = new Client({
+        balance: req.body.balance,
+        email: req.body.email,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        phone: req.body.phone
+    });
+
+    Client.addClient(newClient, (err, client) => {
+        if (err) {
+            console.log(err);
+            res.json({
+                success: false,
+                msg: "Failed to add client"
+            });
+        } else {
+            res.json({
+                success: true,
+                msg: "New Client added",
+                client: client
+            });
+        }
+    });
+});
+
+//Get All Clients
 router.get("/clients", (req, res) => {
     Client.getAllClients((err, clients) => {
         if(err) {
             console.log(err);
             res.json({
                 success: false,
-                msg: "Failed to get clients"
+                msg: "Failed to get clients: "+err
             });
         } else {
             res.json({
@@ -54,6 +82,25 @@ router.get("/clients", (req, res) => {
     });
 });
 
+//Get Client By Id
+router.get("/client/:id", (req, res, next) => {
+    Client.getClientById({_id: mongojs.ObjectId(req.params.id)}, (err, client) => {
+        if(err) {
+            res.json({
+                success: false,
+                msg: "Failed to fetch Client by Id: "+err
+            });
+        } else {
+            res.json({
+                success: true,
+                msg: "Fetched Client by Id",
+                client: client
+            });
+        }
+    });
+});
+
+//Update Client
 router.put("/edit/:id", (req, res, next) => {
     console.log(req.params);
     console.log(req.body);
@@ -65,6 +112,22 @@ router.put("/edit/:id", (req, res, next) => {
             res.json({
                 success: true,
                 msg: "Client Edited",
+                client: client
+            });
+        }
+    });
+});
+
+//Delete Client
+router.delete("/delete/:id", (req, res, next) => {
+    Client.remove({_id: mongojs.ObjectId(req.params.id)}, (err, client) => {
+        if(err) {
+            console.log(err);
+            return next(err);
+        } else {
+            res.json({
+                success: true,
+                msg: "Client Deleted",
                 client: client
             });
         }

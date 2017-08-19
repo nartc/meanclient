@@ -1,3 +1,31 @@
-<p>
-  clients works!
-</p>
+<div class="ui-grid-row">
+  <div class="ui-grid-col-6">
+    <h2><i class="fa fa-users"></i> Clients</h2>
+  </div>
+  <div class="ui-grid-col-6">
+    <h5 class="pull-right text-muted">Total Owed: {{totalOwed | currency:'USD':true}}</h5>
+  </div>
+</div>
+<hr>
+
+<p-dataTable 
+  [value]="clients" 
+  [responsive]="true"
+  selectionMode="single" 
+  [(selection)]="selectedClient" 
+  (onRowSelect)="onRowSelect($event)"
+>
+  <p-column field="_id" header="ID" [style]="{'width':'25%'}"></p-column>
+  <p-column header="Name" [style]="{'width':'15%'}">
+    <ng-template let-client="rowData" pTemplate="body">
+      <span>{{client.firstName}} {{client.lastName}}</span>
+    </ng-template>
+  </p-column>
+  <p-column field="email" header="Email" [style]="{'width':'25%'}"></p-column>
+  <p-column field="phone" header="Phone" [style]="{'width':'15%'}"></p-column>
+  <p-column header="Balance" [style]="{'width':'10%'}">
+    <ng-template let-col let-client="rowData" pTemplate="body">
+      <span>{{client.balance | currency:'USD':true}}</span>
+    </ng-template>
+  </p-column>
+</p-dataTable>

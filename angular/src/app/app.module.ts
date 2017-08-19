@@ -14,7 +14,9 @@ import { FileUploadModule,
          ButtonModule,
          MessagesModule,
          GrowlModule,
-         MenuModule 
+         MenuModule,
+         DataTableModule,
+         SharedModule 
        } from 'primeng/primeng';
 
 //Component Imports
@@ -33,6 +35,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { HttpService } from './services/http.service';
+import { ClientService } from './services/client.service';
 
 const appRoutes: Routes = [
   {path: '', component: DashboardComponent},
@@ -69,9 +72,11 @@ const appRoutes: Routes = [
     ButtonModule,
     MessagesModule,
     GrowlModule,
-    MenuModule
+    MenuModule,
+    DataTableModule,
+    SharedModule
   ],
-  providers: [AuthService, LocalStorageService, HttpService],
+  providers: [AuthService, LocalStorageService, HttpService, ClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
