@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+.loginPanel .ui-panel-titlebar {
+    text-align: center;
+}
+
+.loginGrowl.ui-growl {
+    position: relative;
+    width: 100%;
+    top: 0;
+    right: 0;
+}

@@ -6,6 +6,7 @@ const cors = require('cors');
 const passport = require('passport');
 const config = require('./config/database');
 
+mongoose.Promise = global.Promise;
 mongoose.connect(config.database, {
     useMongoClient: true
 });

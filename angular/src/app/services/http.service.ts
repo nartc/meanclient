@@ -14,7 +14,7 @@ export class HttpService {
     public http: Http
   ) { }
 
-  get (endpoint: string, headersObject: Object = {}): Observable<any> {
+  get (endpoint: string, headersObject: Object): Observable<any> {
         let headers: Headers = new Headers(headersObject);
         let options: RequestOptions = new RequestOptions(
             {
@@ -30,14 +30,15 @@ export class HttpService {
             );
     };
   
-  post(endpoint: string, body: any = {}, headersObject: Object = {}): Observable<any> {
+  post(endpoint: string, body: any, headersObject: Object): Observable<any> {
         let headers: Headers = new Headers(headersObject);
-        headers.append("Content-Type","application/json");
         let options: RequestOptions = new RequestOptions(
             {
                 headers: headers
             }
         );
+
+        console.log(HttpService.url + endpoint);
 
         return this.http.post(HttpService.url + endpoint, body, options)
             .map(
@@ -47,9 +48,8 @@ export class HttpService {
             );
     }
 
-    put(endpoint: string, body: any = {}, headersObject: Object = {}): Observable<any> {
+    put(endpoint: string, body: any, headersObject: Object): Observable<any> {
         let headers: Headers = new Headers();
-        headers.append('Content-Type', 'application/json');
         let options: RequestOptions = new RequestOptions(
             {
                 headers: headers
@@ -64,9 +64,8 @@ export class HttpService {
             );
     }
 
-    delete(endpoint: string, headersObject: Object = {}): Observable<any> {
+    delete(endpoint: string, headersObject: Object): Observable<any> {
         let headers: Headers = new Headers(headersObject);
-        headers.append('Content-Type', 'application/json');
         let options: RequestOptions = new RequestOptions(
             {
                 headers: headers

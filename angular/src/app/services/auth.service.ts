@@ -19,19 +19,19 @@ export class AuthService {
     public localStorageService: LocalStorageService
   ) { }
 
-  registerUser(user: User): Observable<any> {
+  registerUser(user: User): Observable<User> {
     return this.httpService.post('/users/register', user, {'Content-Type':'application/json'});
   };
 
   authenticateUser(user: User): Observable<any> {
-    return this.httpService.post('users/authenticate', user, {'Content-Type': 'application/json'});
+    return this.httpService.post('/users/authenticate', user, {'Content-Type': 'application/json'});
   };
 
-  getProfile(id: string): Observable<any> {
+  getProfile(): Observable<any> {
     this.loadToken();
     this.loadCurrentUser();
 
-    return this.httpService.get('users/profile/'+id, {'Authorization': this.authToken});
+    return this.httpService.get('/users/profile', {'Authorization': this.authToken});
   };
 
   storeUserData(token: any, user: User): void {

@@ -10,7 +10,9 @@ import { FileUploadModule,
          InputMaskModule,
          PanelModule,
          ButtonModule,
-         MessagesModule 
+         MessagesModule,
+         GrowlModule,
+         MenuModule 
        } from 'primeng/primeng';
 
 //Component Imports
@@ -62,7 +64,9 @@ const appRoutes: Routes = [
     InputMaskModule,
     PanelModule,
     ButtonModule,
-    MessagesModule
+    MessagesModule,
+    GrowlModule,
+    MenuModule
   ],
   providers: [AuthService, LocalStorageService, HttpService],
   bootstrap: [AppComponent]

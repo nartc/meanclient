@@ -42,7 +42,7 @@ router.post('/authenticate', (req, res, next) => {
         if(!user) {
             return res.json({
                 success: false,
-                msg: 'Fetching User failed'
+                msg: 'User not found'
             });
         }
 
@@ -56,7 +56,7 @@ router.post('/authenticate', (req, res, next) => {
                 res.json({
                     success: true,
                     token: 'JWT ' +token,
-                    msg: 'Fetched User',
+                    msg: 'Logged In',
                     user: {
                         id: user._id,
                         name: user.name,
@@ -74,7 +74,7 @@ router.post('/authenticate', (req, res, next) => {
 });
 
 //Profile
-router.get('/profile/:id',  passport.authenticate('jwt', {session: false}), (req, res, next) => {
+router.get('/profile',  passport.authenticate('jwt', {session: false}), (req, res, next) => {
     res.json({user: req.user});
 });
 
