@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { Message } from 'primeng/primeng';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 import { User } from '../../models/user';
 
@@ -21,10 +22,13 @@ export class LoginComponent implements OnInit {
   constructor(
     public authService: AuthService,
     public httpService: HttpService,
-    public router: Router
+    public router: Router,
+    public flashMessagesService: FlashMessagesService
   ) { }
 
   ngOnInit() {
+    console.log(this.flashMessagesService);
+    console.log(new FlashMessagesService());
   }
 
   onLoginSubmit(): void{
@@ -40,13 +44,16 @@ export class LoginComponent implements OnInit {
           if(data.success) {
             console.log(data);
             this.authService.storeUserData(data.token, data.user);
+            this.flashMessagesService.show('You are logged in', {
+              cssClass: 'alert-success',
+              timeout: 3000
+            });
             this.router.navigate(['/']);
           } else {
             this.loginMessages = [];
             this.loginMessages.push({
               severity: 'error',
               summary: 'Login Error',
-              
               detail: data.msg 
             });
             this.router.navigate(['/login']);

@@ -4,6 +4,7 @@ import { User } from '../../models/user';
 import { Message } from 'primeng/primeng';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-register',
@@ -18,12 +19,14 @@ export class RegisterComponent implements OnInit {
     password: ''
   };
   public userForm: FormGroup;
+  public registerMessages: Array<Message> = [];
 
 
   constructor(
     public fB: FormBuilder,
     public authService: AuthService,
-    public router: Router
+    public router: Router,
+    public flashMessagesService: FlashMessagesService
   ) { }
 
   ngOnInit() {
@@ -48,8 +51,18 @@ export class RegisterComponent implements OnInit {
     this.authService.registerUser(this.user).subscribe(
      (data: any): void => {
        if(data.success) {
+         this.flashMessagesService.show('You are registered and now can log in', {
+          cssClass: 'alert-success',
+          timeout: 3000
+         });
          this.router.navigate(['/login']);
        } else {
+         this.registerMessages = [];
+         this.registerMessages.push({
+          severity: 'error',
+          summary: 'Register Error',
+          detail: 'Failed to register'
+         });
          this.router.navigate(['/register']);
        }
      },

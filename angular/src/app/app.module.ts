@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router'; 
 import { HttpModule } from '@angular/http';
+import { FlashMessagesModule } from 'angular2-flash-messages';
+
 //PrimeNG Imports
 import { FileUploadModule, 
          InputTextModule,
@@ -59,6 +61,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FormsModule,
     ReactiveFormsModule,
+    FlashMessagesModule,
     FileUploadModule,
     InputTextModule,
     InputMaskModule,

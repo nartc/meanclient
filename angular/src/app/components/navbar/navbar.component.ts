@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
 import { MenuItem } from "primeng/primeng";
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +15,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
-    public router: Router
+    public router: Router,
+    public flashMessagesService: FlashMessagesService
   ) { }
 
   ngOnInit(): void {
@@ -23,12 +25,17 @@ export class NavbarComponent implements OnInit {
         label: 'Manage',
         items: [
           {
-              label: 'Change Password', icon: 'fa-wrench'
+              label: 'Change Password', 
+              icon: 'fa-wrench',
+              command: (event: any): void => {
+                console.log(event);
+              }
           },
           {
               label: 'Log out',
               icon: 'fa-minus',
               command: (event: any): void => {
+                  console.log(event);
                   this.onLogoutClick();
               }
           }
@@ -39,7 +46,12 @@ export class NavbarComponent implements OnInit {
 
   onLogoutClick() {
     this.authService.logout();
+    this.flashMessagesService.show('Logged out', {
+      cssClass: 'alert-success',
+      timeout: 3000
+    });
     this.router.navigate(['/login']);
+    return false;
   }
 
 }

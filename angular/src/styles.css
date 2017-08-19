@@ -9,3 +9,15 @@
     top: 0;
     right: 0;
 }
+
+.registerGrowl.ui-growl {
+    position: relative;
+    width: 100%;
+    top: 0;
+    right: 0;
+}
+
+.alert.flash-message.alert-success > p {
+    margin-bottom: 0;
+    padding: 0;
+}
