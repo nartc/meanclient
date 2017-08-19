@@ -1,3 +1,153 @@
-<p>
-  register works!
-</p>
+<form 
+  [formGroup]="userForm"
+  (ngSubmit)="onRegisterSubmit(userForm.value)"
+>
+  <p-panel header="Register">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Name *:
+        </div>
+        <div class="ui-grid-col-6">
+          <input
+            pInputText 
+            type="text" 
+            formControlName="name"
+            placeholder="Required"
+          >
+        </div>
+        <div class="ui-grid-col-4">
+          <div class="ui-messages ui-messages-error ui-corner-all" *ngIf="!userForm.controls['name'].valid && userForm.controls['name'].dirty">
+            <i class="fa fa-close"></i>
+            <span *ngIf="userForm.controls['name'].errors['required']">Name is required</span>
+            <span *ngIf="userForm.controls['name'].errors['minlength']">Must be at least 6 characters</span>
+          </div>
+          <div id="checkValid" *ngIf="userForm.controls['name'].valid">
+            <i class="fa fa-check-circle-o fa-2x"></i>
+          </div>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Email *:
+        </div>
+        <div class="ui-grid-col-6">
+          <input
+            pInputText 
+            type="email" 
+            formControlName="email"
+            placeholder="Required"
+          >
+        </div>
+        <div class="ui-grid-col-4">
+          <div class="ui-messages ui-messages-error ui-corner-all" *ngIf="!userForm.controls['email'].valid && userForm.controls['email'].dirty">
+            <i class="fa fa-close"></i>
+            <span *ngIf="userForm.controls['email'].errors['required']">Email is required</span>
+            <span *ngIf="userForm.controls['email'].errors['pattern']">Must be in valid email format</span>
+          </div>
+          <div id="checkValid" *ngIf="userForm.controls['email'].valid">
+            <i class="fa fa-check-circle-o fa-2x"></i>
+          </div>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+          <div class="ui-grid-col-2">
+            Password *:
+          </div>
+          <div class="ui-grid-col-6">
+            <input
+              pInputText 
+              type="password" 
+              formControlName="password"
+              placeholder="Required - Min(6)"
+            >
+          </div>
+          <div class="ui-grid-col-4">
+            <div class="ui-messages ui-messages-error ui-corner-all" *ngIf="!userForm.controls['password'].valid && userForm.controls['password'].dirty">
+              <i class="fa fa-close"></i>
+              <span *ngIf="userForm.controls['password'].errors['required']">Password is required</span>
+              <span *ngIf="userForm.controls['password'].errors['minlength']">Must be at least 6 characters</span>
+            </div>
+            <div id="checkValid" *ngIf="userForm.controls['password'].valid">
+              <i class="fa fa-check-circle-o fa-2x"></i>
+            </div>
+          </div>
+        </div>
+        <div class="ui-grid-row">
+          <div class="ui-grid-col-2"></div>
+          <div class="ui-grid-col-6">
+              <button pButton type="submit" label="Submit" [disabled]="!userForm.valid"></button>
+          </div>
+          <div id="checkValid" class="ui-grid-col-4" *ngIf="userForm.valid">
+            <i class="fa fa-check-circle-o fa-2x"></i>
+          </div>
+        </div>
+    </div>
+  </p-panel>
+</form>
+
+
+
+<!-- <div class="card">
+  <div class="card-header">
+    Register User
+  </div>
+  <div class="card-block">
+    <form 
+      [formGroup]="userForm"
+      (ngSubmit)="onRegisterSubmit(userForm.value)"
+    >
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input 
+          type="text"
+          class="form-control"
+          [(ngModel)]="user.name"
+          name="name"
+          #userName = "ngModel"
+          minlength = "10"
+        >
+          <div *ngIf="userName.errors?.minlength && userName.touched" class="alert alert-secondary">
+            <small>*Must be at least 10 characters.</small>
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="email">Email</label>
+          <input 
+            type="email"
+            class="form-control"
+            [(ngModel)]="user.email"
+            name="email"
+            #userEmail = "ngModel"
+            minlength = "10"
+            required
+          >
+            <div class="alert alert-danger" *ngIf="userEmail.errors?.required && userEmail.touched">
+              <small>*Email is required.</small>
+            </div>
+            <div class="alert alert-secondary" *ngIf="userEmail.errors?.minlength && userEmail.touched">
+              <small>*Must be at least 10 characters.</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input 
+              type="password"
+              class="form-control"
+              [(ngModel)]="user.password"
+              name="password"
+              #userPassword = "ngModel"
+              minlength = "6"
+              required
+            >
+              <div class="alert alert-danger" *ngIf="userPassword.errors?.required && userPassword.touched">
+                <small>*Password is required.</small>
+              </div>
+              <div class="alert alert-secondary" *ngIf="userPassword.errors?.minlength && userPassword.touched">
+                <small>*Must be at least 6 characters.</small>
+              </div>
+          </div>
+          <input type="submit" value="Submit" class="btn btn-primary btn-block">
+    </form>
+  </div>
+</div> -->

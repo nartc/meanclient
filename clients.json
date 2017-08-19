@@ -1,0 +1,20 @@
+{
+    "clients": 
+    [
+        {
+            "balance": 100.00,
+            "email": "jdoe@gmail.com",
+            "firstName": "John",
+            "lastName": "Doe",
+            "phone": "555-555-5555"
+        },
+        {
+            "balance": 350.00,
+            "email": "stevesmith@gmail.com",
+            "firstName": "Steve",
+            "lastName": "Smith",
+            "phone": "444-444-4444"
+        }  
+    ]
+              
+}            

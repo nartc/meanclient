@@ -1,10 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router'; 
-
+import { HttpModule } from '@angular/http';
 //PrimeNG Imports
-import { FileUploadModule } from 'primeng/primeng';
+import { FileUploadModule, 
+         InputTextModule,
+         InputMaskModule,
+         PanelModule,
+         ButtonModule,
+         MessagesModule 
+       } from 'primeng/primeng';
 
 //Component Imports
 import { AppComponent } from './app.component';
@@ -17,6 +24,11 @@ import { AddClientComponent } from './components/add-client/add-client.component
 import { EditClientComponent } from './components/edit-client/edit-client.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+
+//Service Imports
+import { AuthService } from './services/auth.service';
+import { LocalStorageService } from './services/local-storage.service';
+import { HttpService } from './services/http.service';
 
 const appRoutes: Routes = [
   {path: '', component: DashboardComponent},
@@ -40,11 +52,19 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
-    FileUploadModule
+    FormsModule,
+    ReactiveFormsModule,
+    FileUploadModule,
+    InputTextModule,
+    InputMaskModule,
+    PanelModule,
+    ButtonModule,
+    MessagesModule
   ],
-  providers: [],
+  providers: [AuthService, LocalStorageService, HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

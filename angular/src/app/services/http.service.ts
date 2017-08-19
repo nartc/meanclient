@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Headers, Http, RequestOptions, Response} from "@angular/http";
+import { Headers, Http, RequestOptions, Response } from "@angular/http";
 import "rxjs/add/operator/map";
 import {Observable} from "rxjs/Observable";
 
@@ -32,6 +32,7 @@ export class HttpService {
   
   post(endpoint: string, body: any = {}, headersObject: Object = {}): Observable<any> {
         let headers: Headers = new Headers(headersObject);
+        headers.append("Content-Type","application/json");
         let options: RequestOptions = new RequestOptions(
             {
                 headers: headers
@@ -39,6 +40,40 @@ export class HttpService {
         );
 
         return this.http.post(HttpService.url + endpoint, body, options)
+            .map(
+                (res: Response): Promise<any> => {
+                    return res.json();
+                }
+            );
+    }
+
+    put(endpoint: string, body: any = {}, headersObject: Object = {}): Observable<any> {
+        let headers: Headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        let options: RequestOptions = new RequestOptions(
+            {
+                headers: headers
+            }
+        );
+
+        return this.http.put(HttpService.url + endpoint, body, options)
+            .map(
+                (res: Response): Promise<any> => {
+                    return res.json();
+                }
+            );
+    }
+
+    delete(endpoint: string, headersObject: Object = {}): Observable<any> {
+        let headers: Headers = new Headers(headersObject);
+        headers.append('Content-Type', 'application/json');
+        let options: RequestOptions = new RequestOptions(
+            {
+                headers: headers
+            }
+        );
+
+        return this.http.delete(HttpService.url + endpoint, options)
             .map(
                 (res: Response): Promise<any> => {
                     return res.json();
