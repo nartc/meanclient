@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../services/client.service';
+import { Router } from '@angular/router';
+import { ConfirmationService } from 'primeng/primeng';
+
 import { Client } from '../../models/client';
 
 @Component({
@@ -14,13 +17,13 @@ export class ClientsComponent implements OnInit {
   public selectedClient: Client;
 
   constructor(
-    public clientService: ClientService
+    public clientService: ClientService,
+    public router: Router
   ) { }
 
   ngOnInit() {
     this.clientService.getClients().subscribe(
       (data: any) => {
-        console.log(data);
         this.clients = data.clients;
         this.getTotal();
       }
@@ -37,8 +40,7 @@ export class ClientsComponent implements OnInit {
   }
 
   onRowSelect(event) {
-    console.log(event);
-    
+    this.router.navigate(['/client/'+event.data._id]);
   }
 
 }

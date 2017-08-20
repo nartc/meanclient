@@ -16,7 +16,8 @@ import { FileUploadModule,
          GrowlModule,
          MenuModule,
          DataTableModule,
-         SharedModule 
+         SharedModule,
+         ConfirmDialogModule, ConfirmationService
        } from 'primeng/primeng';
 
 //Component Imports
@@ -42,7 +43,8 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'upload', component: UploadClientComponent},
-  {path: 'add', component: AddClientComponent}
+  {path: 'add', component: AddClientComponent},
+  {path: 'client/:id', component: ClientDetailComponent}
 ]
 @NgModule({
   declarations: [
@@ -76,7 +78,13 @@ const appRoutes: Routes = [
     DataTableModule,
     SharedModule
   ],
-  providers: [AuthService, LocalStorageService, HttpService, ClientService],
+  providers: [
+    AuthService, 
+    LocalStorageService, 
+    HttpService, 
+    ClientService,
+    ConfirmationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
