@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   };
   public userForm: FormGroup;
   public registerMessages: Array<Message> = [];
-
+  public emailRegex: string = "[^ @]*@[^ @]*"
 
   constructor(
     public fB: FormBuilder,
@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
       ])),
       'email': new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern("[^ @]*@[^ @]*")
+        Validators.pattern(this.emailRegex)
       ])),
       'password': new FormControl('', Validators.compose([
         Validators.required,
@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
      (data: any): void => {
        if(data.success) {
          this.flashMessagesService.show('You are registered and now can log in', {
-          cssClass: 'alert-success',
+          cssClass: 'ui-messages-info',
           timeout: 3000
          });
          this.router.navigate(['/login']);

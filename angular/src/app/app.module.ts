@@ -17,7 +17,8 @@ import { FileUploadModule,
          MenuModule,
          DataTableModule,
          SharedModule,
-         ConfirmDialogModule, ConfirmationService
+         ConfirmDialogModule, ConfirmationService,
+         SplitButtonModule
        } from 'primeng/primeng';
 
 //Component Imports
@@ -37,15 +38,19 @@ import { AuthService } from './services/auth.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { HttpService } from './services/http.service';
 import { ClientService } from './services/client.service';
+import { AuthGuard } from './guards/auth.guard';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 const appRoutes: Routes = [
-  {path: '', component: DashboardComponent},
+  {path: '', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'upload', component: UploadClientComponent},
-  {path: 'add', component: AddClientComponent},
-  {path: 'client/:id', component: ClientDetailComponent}
+  {path: 'upload', component: UploadClientComponent, canActivate: [AuthGuard]},
+  {path: 'add', component: AddClientComponent, canActivate: [AuthGuard]},
+  {path: 'client/:id', component: ClientDetailComponent, canActivate: [AuthGuard]},
+  {path: 'edit/:id', component: EditClientComponent, canActivate: [AuthGuard]}
 ]
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +62,8 @@ const appRoutes: Routes = [
     AddClientComponent,
     EditClientComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -76,14 +82,17 @@ const appRoutes: Routes = [
     GrowlModule,
     MenuModule,
     DataTableModule,
-    SharedModule
+    SharedModule,
+    ConfirmDialogModule,
+    SplitButtonModule
   ],
   providers: [
     AuthService, 
     LocalStorageService, 
     HttpService, 
     ClientService,
-    ConfirmationService
+    ConfirmationService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

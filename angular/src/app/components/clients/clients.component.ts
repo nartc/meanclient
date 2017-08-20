@@ -18,7 +18,8 @@ export class ClientsComponent implements OnInit {
 
   constructor(
     public clientService: ClientService,
-    public router: Router
+    public router: Router,
+    public confirmationService: ConfirmationService
   ) { }
 
   ngOnInit() {
@@ -40,7 +41,13 @@ export class ClientsComponent implements OnInit {
   }
 
   onRowSelect(event) {
-    this.router.navigate(['/client/'+event.data._id]);
+    console.log(event);
+    this.confirmationService.confirm({
+      message: 'View details of "'+event.data._id + '" ?',
+      accept: () => {
+        this.router.navigate(['/client/'+event.data._id]);
+      }
+     });
   }
 
 }

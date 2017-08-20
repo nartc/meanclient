@@ -17,7 +17,24 @@
     right: 0;
 }
 
-.alert.flash-message.alert-success > p {
+.addClientGrowl.ui-growl {
+    position: relative;
+    width: 100%;
+    top: 0;
+    right: 0;
+}
+
+.alert.flash-message.ui-messages-info {
+    background-color: #84d0e6;
+}
+
+.alert.flash-message.ui-messages-info > p {
     margin-bottom: 0;
     padding: 0;
+}
+
+#addNewButton.ui-button{
+    display: block;
+    width: 90%;
+    margin: auto;
 }

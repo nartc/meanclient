@@ -1,0 +1,9 @@
+::ng-deep .ui-messages {
+    display: block;
+    margin: 0;
+    padding: 3px;
+}
+
+#checkValid .fa {
+    color: green;
+}

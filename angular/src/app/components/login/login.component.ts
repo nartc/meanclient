@@ -27,8 +27,6 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.flashMessagesService);
-    console.log(new FlashMessagesService());
   }
 
   onLoginSubmit(): void{
@@ -45,7 +43,7 @@ export class LoginComponent implements OnInit {
             console.log(data);
             this.authService.storeUserData(data.token, data.user);
             this.flashMessagesService.show('You are logged in', {
-              cssClass: 'alert-success',
+              cssClass: 'ui-messages-info',
               timeout: 3000
             });
             this.router.navigate(['/']);
