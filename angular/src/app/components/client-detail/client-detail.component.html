@@ -1,11 +1,11 @@
 <!--Confirmation Dialog -->
 <p-confirmDialog header="Confirmation" icon="fa fa-question-circle"></p-confirmDialog>
 
-<div class="ui-grid row">
+<div class="ui-grid-row">
   <div class="ui-grid-col-6">
     <button pButton type="button" class="ui-button-info" label="Back To Dashboard" icon="fa-arrow-circle-o-left" iconPos="left" (click)="onClick()"></button>
   </div>
-  <div class="ui-grid-col-6">
+  <div class="ui-grid-col-6 ui-rtl" dir="rtl">
     <p-splitButton label="Manage" [model]="buttonItems" styleClass="ui-button-secondary"></p-splitButton>
   </div>
 </div>
