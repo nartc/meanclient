@@ -17,6 +17,7 @@
   selectionMode="single" 
   [(selection)]="selectedClient" 
   (onRowSelect)="onRowSelect($event)"
+  *ngIf="clients?.length > 0;else noClients"
 >
   <p-column field="_id" header="ID" [style]="{'width':'25%'}"></p-column>
   <p-column header="Name" [style]="{'width':'15%'}">
@@ -31,4 +32,12 @@
       <span>{{client.balance | currency:'USD':true}}</span>
     </ng-template>
   </p-column>
+  <p-footer>
+    Total clients: {{clients.length}} 
+  </p-footer>
+  <ng-template #noClients>
+    <p-footer>
+      There are no clients in the system.
+    </p-footer>
+  </ng-template>
 </p-dataTable>

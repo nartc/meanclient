@@ -28,14 +28,13 @@ export class NavbarComponent implements OnInit {
               label: 'Change Password', 
               icon: 'fa-wrench',
               command: (event: any): void => {
-                console.log(event);
+                //TODO: Change Password
               }
           },
           {
               label: 'Log out',
               icon: 'fa-minus',
               command: (event: any): void => {
-                  console.log(event);
                   this.onLogoutClick();
               }
           }
