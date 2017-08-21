@@ -1182,7 +1182,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page-not-found/page-not-found.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2>\n  PAGE NOT FOUND\n</h2>\n"
+module.exports = "<h2>\r\n  PAGE NOT FOUND\r\n</h2>\r\n"
 
 /***/ }),
 
@@ -1744,7 +1744,9 @@ var HttpService = HttpService_1 = (function () {
 }());
 HttpService.host = "localhost";
 HttpService.port = 3000;
-HttpService.url = "http://" + HttpService_1.host + ":" + HttpService_1.port;
+HttpService.domain = "mean-deployment-ct.herokuapp.com";
+//public static url = "http://" + HttpService.host + ":" + HttpService.port;  
+HttpService.url = "http://" + HttpService_1.domain;
 HttpService = HttpService_1 = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === "function" && _a || Object])
