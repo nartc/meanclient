@@ -7,8 +7,9 @@ import {Observable} from "rxjs/Observable";
 export class HttpService {
   public static host = "localhost";
   public static port = 3000;
-  public static url = "http://" + HttpService.host + ":" + HttpService.port;  
-  
+  public static domain = "mean-deployment-ct.herokuapp.com"
+//public static url = "http://" + HttpService.host + ":" + HttpService.port;  
+  public static url = "http://"+ HttpService.domain;
 
   constructor(
     public http: Http
