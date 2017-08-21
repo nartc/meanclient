@@ -1744,7 +1744,7 @@ var HttpService = HttpService_1 = (function () {
 }());
 HttpService.host = "localhost";
 HttpService.port = 3000;
-HttpService.domain = "mean-deployment-ct.herokuapp.com";
+HttpService.domain = "mean-auth-ct.herokuapp.com";
 //public static url = "http://" + HttpService.host + ":" + HttpService.port;  
 HttpService.url = "http://" + HttpService_1.domain;
 HttpService = HttpService_1 = __decorate([
