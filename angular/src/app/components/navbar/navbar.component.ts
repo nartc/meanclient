@@ -11,7 +11,6 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 })
 export class NavbarComponent implements OnInit {
   
-  public id: string;
   public items: Array<MenuItem> = [];
 
   constructor(
@@ -30,8 +29,7 @@ export class NavbarComponent implements OnInit {
               label: 'Change Password', 
               icon: 'fa-wrench',
               command: (event: any): void => {
-                this.id = this.authService.currentUser.id;
-                this.router.navigate(['/password/'+this.id])
+                this.router.navigate(['/password/'])
               }
           },
           {

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongojs = require('mongojs');
 const passport = require('passport');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
@@ -58,7 +59,7 @@ router.post('/authenticate', (req, res, next) => {
                     token: 'JWT ' +token,
                     msg: 'Logged In',
                     user: {
-                        id: user._id,
+                        _id: user._id,
                         name: user.name,
                         email: user.email
                     }
@@ -76,6 +77,54 @@ router.post('/authenticate', (req, res, next) => {
 //Profile
 router.get('/profile',  passport.authenticate('jwt', {session: false}), (req, res, next) => {
     res.json({user: req.user});
+});
+
+//Change Password
+router.put('/password', (req, res, next) => {
+    console.log(req.body);
+    let candidatePassword = req.body.candidatePassword;
+    let newPassword = req.body.newPassword;
+    let currentPassword = req.body.user.password;
+    User.comparePassword(candidatePassword, currentPassword, (err, isMatched) => {
+        if (err) throw err;
+        if(isMatched) {
+           bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(newPassword, salt, (err, hash) => {
+                newPassword = hash;
+                req.body.user = {
+                    _id: req.body.user._id,
+                    email: req.body.user.email,
+                    name: req.body.user.name,
+                    password: newPassword
+                }
+                console.log(req.body.user);
+                User.findByIdAndUpdate({_id: mongojs.ObjectId(req.body.user._id)}, req.body.user, {new: true}, (err, user) => {
+                    if (err) {
+                        console.log(err);
+                        return next (err);
+                    } else {
+                        res.json({
+                            success: true,
+                            msg: "Password Successfully Changed",
+                            user: {
+                                _id: user._id,
+                                name: user.name,
+                                email: user.email
+                            }
+                        });
+                    }
+                });
+            });
+           });
+           
+        } else {
+            res.json({
+                success: false,
+                msg: "Password Does Not Match"
+            });
+        }
+        
+    });
 });
 
 module.exports = router;

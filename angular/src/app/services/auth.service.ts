@@ -60,4 +60,9 @@ export class AuthService {
     this.localStorageService.clearAll();
   };
 
+  changePassword(user: User, candidatePassword: string, newPassword: string): Observable<any> {
+    let data = {user, candidatePassword, newPassword}
+    return this.httpService.put('/users/password', data, {'Content-Type':'application/json'});
+  }
+
 }

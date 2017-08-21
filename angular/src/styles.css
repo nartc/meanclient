@@ -17,6 +17,13 @@
     right: 0;
 }
 
+.changePasswordGrowl.ui-growl {
+    position: relative;
+    width: 100%;
+    top: 0;
+    right: 0;
+}
+
 .addClientGrowl.ui-growl {
     position: relative;
     width: 100%;
