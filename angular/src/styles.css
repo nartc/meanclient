@@ -38,3 +38,12 @@
     width: 90%;
     margin: auto;
 }
+
+.editClientPanel .ui-panel-footer {
+    background: linear-gradient(to bottom, #f6f7f9 0%, #ebedf0 100%);
+}
+
+.clientDetailSplitBtnMenu.ui-menu{
+    width: 7.75em;
+    left: 0 !important;
+}

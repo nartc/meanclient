@@ -32,6 +32,8 @@ import { AddClientComponent } from './components/add-client/add-client.component
 import { EditClientComponent } from './components/edit-client/edit-client.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 //Service Imports
 import { AuthService } from './services/auth.service';
@@ -39,7 +41,7 @@ import { LocalStorageService } from './services/local-storage.service';
 import { HttpService } from './services/http.service';
 import { ClientService } from './services/client.service';
 import { AuthGuard } from './guards/auth.guard';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
+
 
 const appRoutes: Routes = [
   {path: '', component: DashboardComponent, canActivate: [AuthGuard]},
@@ -48,7 +50,8 @@ const appRoutes: Routes = [
   {path: 'upload', component: UploadClientComponent, canActivate: [AuthGuard]},
   {path: 'add', component: AddClientComponent, canActivate: [AuthGuard]},
   {path: 'client/:id', component: ClientDetailComponent, canActivate: [AuthGuard]},
-  {path: 'edit/:id', component: EditClientComponent, canActivate: [AuthGuard]}
+  {path: 'edit/:id', component: EditClientComponent, canActivate: [AuthGuard]},
+  {path: 'password/:id', component: ChangePasswordComponent, canActivate: [AuthGuard]}
 ]
 
 @NgModule({
@@ -63,7 +66,8 @@ const appRoutes: Routes = [
     EditClientComponent,
     LoginComponent,
     RegisterComponent,
-    SidebarComponent
+    SidebarComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

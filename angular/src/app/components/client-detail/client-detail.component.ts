@@ -17,6 +17,7 @@ export class ClientDetailComponent implements OnInit {
   public id: string = '';
   public client: Client;
   public hasBalance: boolean = false;
+  public showEditBalanceInput: boolean = false;
 
   constructor(
     public router: Router,
@@ -29,7 +30,6 @@ export class ClientDetailComponent implements OnInit {
   ngOnInit() {
     //Get ID
     this.id = this.aRoute.snapshot.params['id'];
-    console.log(this.id);
 
     //Get Client by Id
     this.clientService.getClientById(this.id).subscribe(
@@ -90,6 +90,33 @@ export class ClientDetailComponent implements OnInit {
 
   onClick() {
     this.router.navigate(['/']);
+  }
+
+  updateBalance(id: string) {
+    this.clientService.updateClient(this.id, this.client).subscribe(
+      (data: any): void => {
+        console.log(data);
+        if(data.success) {
+          this.flashMessagesService.show(
+            'Balance Updated',
+            {
+              cssClass: 'ui-messages-info',
+              timeout: 3000
+            }
+          );
+          this.router.navigate(['/client/'+this.id]);
+        } else {
+          this.flashMessagesService.show(
+            'Balance Update Failed',
+            {
+              cssClass: 'ui-messages-danger',
+              timeout: 3000
+            }
+          );
+          this.router.navigate(['/client/'+this.id]);
+        }
+      }
+    );
   }
 
 }

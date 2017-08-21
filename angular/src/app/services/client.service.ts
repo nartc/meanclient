@@ -28,9 +28,9 @@ export class ClientService {
     return this.httpService.get('/clients/client/'+id, {});
   }
 
-  updateClient(client: Client): Observable<any> {
+  updateClient(id: string, client: Client): Observable<any> {
     console.log(client);
-    return this.httpService.put('/clients/edit/'+client._id, client, {'Content-Type': 'application/json'});
+    return this.httpService.put('/clients/edit/'+id, client, {'Content-Type': 'application/json'});
   }
 
   deleteClient(id: string): Observable<any> {

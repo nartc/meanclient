@@ -1,3 +1,147 @@
-<p>
-  edit-client works!
-</p>
+<!--Confirmation Dialog -->
+<p-confirmDialog header="Confirmation" icon="fa fa-question-circle"></p-confirmDialog>
+
+<div class="ui-grid-row">
+  <div class="ui-grid-col-6">
+    <button pButton type="button" class="ui-button-info" label="Back To Client Details" icon="fa-arrow-circle-o-left" iconPos="left" (click)="onClick()"></button>
+  </div>
+  <div class="ui-grid-col-6">
+    
+  </div>
+</div>
+<br>
+
+<form
+*ngIf="client"
+[formGroup]="editClientForm"
+(ngSubmit)="onEditSubmit(editClientForm.value)"
+>
+<p-panel header="Edit Client">
+  <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-2">
+        First Name *:
+      </div>
+      <div class="ui-grid-col-6">
+        <input 
+          pInputText
+          type="text"
+          formControlName="firstName"
+          [(ngModel)]="client.firstName"
+          placeholder="Required"
+        >
+      </div>
+      <div class="ui-grid-col-4">
+        <div 
+          class="ui-messages ui-messages-error ui-corner-all"
+          *ngIf="!editClientForm.controls['firstName'].valid && editClientForm.controls['firstName'].dirty" 
+        >
+          <i class="fa fa-close"></i>
+          <span *ngIf="editClientForm.controls['firstName'].errors['required']">This field is required</span>
+        </div>
+      </div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-2">
+        Last Name *:
+      </div>
+      <div class="ui-grid-col-6">
+        <input 
+          pInputText
+          type="text"
+          formControlName="lastName"
+          [(ngModel)]="client.lastName"
+          placeholder="Required"
+        >
+      </div>
+      <div class="ui-grid-col-4">
+        <div 
+          class="ui-messages ui-messages-error ui-corner-all"
+          *ngIf="!editClientForm.controls['lastName'].valid && editClientForm.controls['lastName'].dirty" 
+        >
+          <i class="fa fa-close"></i>
+          <span *ngIf="editClientForm.controls['lastName'].errors['required']">This field is required</span>
+        </div>
+      </div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-2">
+        Phone *:
+      </div>
+      <div class="ui-grid-col-6">
+        <p-inputMask 
+          type="text"
+          formControlName="phone"
+          [(ngModel)]="client.phone"
+          placeholder="999-999-9999"
+          mask="999-999-9999"
+        >
+        </p-inputMask>
+      </div>
+      <div class="ui-grid-col-4">
+        <div 
+          class="ui-messages ui-messages-error ui-corner-all"
+          *ngIf="!editClientForm.controls['phone'].valid && editClientForm.controls['phone'].dirty" 
+        >
+          <i class="fa fa-close"></i>
+          <span *ngIf="editClientForm.controls['phone'].errors['required']">This field is required</span>
+          <span *ngIf="editClientForm.controls['phone'].errors['pattern']">Please enter a valid phone number</span>
+        </div>
+      </div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-2">
+        Email *:
+      </div>
+      <div class="ui-grid-col-6">
+        <input 
+          pInputText
+          type="text"
+          formControlName="email"
+          [(ngModel)]="client.email"
+          placeholder="Required"
+        >
+      </div>
+      <div class="ui-grid-col-4">
+        <div 
+          class="ui-messages ui-messages-error ui-corner-all"
+          *ngIf="!editClientForm.controls['email'].valid && editClientForm.controls['email'].dirty" 
+        >
+          <i class="fa fa-close"></i>
+          <span *ngIf="editClientForm.controls['email'].errors['required']">This field is required</span>
+          <span *ngIf="editClientForm.controls['email'].errors['pattern']">Please enter a valid email</span>
+        </div>
+      </div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-2">
+        Balance *:
+      </div>
+      <div class="ui-grid-col-6">
+        <input 
+          pInputText
+          type="number"
+          formControlName="balance"
+          [(ngModel)]="client.balance"
+          placeholder="required"
+        >
+      </div>
+      <div class="ui-grid-col-4">
+        <div 
+          class="ui-messages ui-messages-error ui-corner-all"
+          *ngIf="!editClientForm.controls['balance'].valid && editClientForm.controls['firstName'].dirty" 
+        >
+          <i class="fa fa-close"></i>
+          <span *ngIf="editClientForm.controls['balance'].errors['required']">This field is required</span>
+        </div>
+      </div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-2"></div>
+      <div class="ui-grid-col-6">
+          <button pButton type="submit" label="Submit" [disabled]="!editClientForm.valid"></button>
+      </div>
+    </div>
+  </div>
+</p-panel>
+</form>

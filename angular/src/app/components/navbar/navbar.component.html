@@ -1,4 +1,7 @@
-<p-menu #menu popup="popup" [model]="items"></p-menu>
+<p-menu #menu popup="popup" [model]="items" styleClass="navMenu"></p-menu>
+
+<!--Confirmation Dialog -->
+<!-- <p-confirmDialog header="Confirmation" icon="fa fa-question-circle"></p-confirmDialog> -->
 
 <!--Navbar-->
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -27,6 +30,9 @@
         <li *ngIf="authService.isLoggedIn()" class="nav-item">
           <a class="nav-link" id="welcomeText" style="cursor: pointer">Welcome, {{authService.currentUser?.name}}</a>
         </li>
+        <!-- <li *ngIf="authService.isLoggedIn()" class="nav-item">
+          <a class="nav-link" id="welcomeText" (click)="onLogoutClick()" style="cursor: pointer">Logout</a>
+        </li> -->
         <li *ngIf="authService.isLoggedIn()" class="nav-item">
           <a class="nav-link" (click)="menu.toggle($event)" style="cursor: pointer"><i class="fa fa-user-circle-o"></i></a>
         </li>

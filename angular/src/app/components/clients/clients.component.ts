@@ -26,7 +26,8 @@ export class ClientsComponent implements OnInit {
     this.clientService.getClients().subscribe(
       (data: any) => {
         this.clients = data.clients;
-        this.selectedClient = this.clients[0];
+        //To have the first row selected onInit:
+        //this.selectedClient = this.clients[0];
         this.getTotal();
       }
     );
