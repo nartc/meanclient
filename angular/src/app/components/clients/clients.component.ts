@@ -43,7 +43,6 @@ export class ClientsComponent implements OnInit {
   }
 
   onRowSelect(event) {
-    console.log(event);
     this.confirmationService.confirm({
       message: 'View details of "'+event.data._id + '" ?',
       accept: () => {

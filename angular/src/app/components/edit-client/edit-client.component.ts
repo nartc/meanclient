@@ -61,7 +61,6 @@ export class EditClientComponent implements OnInit {
     this.confirmationService.confirm({
       message: 'Are you sure to edit this client?',
       accept: () => {
-        console.log(this.id);
         this.clientService.updateClient(this.id, this.client).subscribe(
           (data: any): void => {
             if(data.success) {

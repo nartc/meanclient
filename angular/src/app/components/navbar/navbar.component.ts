@@ -24,7 +24,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getProfile().subscribe(
       (data: any): void => {
-        console.log(data.user);
         this.id = data.user._id;
       }
     );

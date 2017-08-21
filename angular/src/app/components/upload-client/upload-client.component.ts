@@ -16,7 +16,6 @@ export class UploadClientComponent implements OnInit {
   }
 
   onSelect(event) {
-    console.log(event);
     for(let file of event.files) {
       this.uploadedFiles.push(file);
     }

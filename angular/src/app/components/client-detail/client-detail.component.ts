@@ -95,7 +95,6 @@ export class ClientDetailComponent implements OnInit {
   updateBalance(id: string) {
     this.clientService.updateClient(this.id, this.client).subscribe(
       (data: any): void => {
-        console.log(data);
         if(data.success) {
           this.flashMessagesService.show(
             'Balance Updated',
