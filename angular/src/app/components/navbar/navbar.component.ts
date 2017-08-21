@@ -22,11 +22,6 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.authService.getProfile().subscribe(
-      (data: any): void => {
-        this.id = data.user._id;
-      }
-    );
     this.items = [
       {
         label: 'Manage',
@@ -35,6 +30,7 @@ export class NavbarComponent implements OnInit {
               label: 'Change Password', 
               icon: 'fa-wrench',
               command: (event: any): void => {
+                this.id = this.authService.currentUser.id;
                 this.router.navigate(['/password/'+this.id])
               }
           },
@@ -51,23 +47,24 @@ export class NavbarComponent implements OnInit {
   }
 
   onLogoutClick() {
-    // this.confirmationService.confirm({
-    //   message: 'Are you sure to log out?',
-    //   accept: () => {
-    //     this.authService.logout();
-    //     this.flashMessagesService.show('Logged out', {
-    //       cssClass: 'ui-messages-info',
-    //       timeout: 3000
-    //     });
-    //     this.router.navigate(['/login']);
-    //   }
-    // });
-    this.authService.logout();
-    this.flashMessagesService.show('Logged out', {
-      cssClass: 'ui-messages-info',
-      timeout: 3000
+    this.confirmationService.confirm({
+      message: 'Are you sure to log out?',
+      key: "navConfirm",
+      accept: () => {
+        this.authService.logout();
+        this.flashMessagesService.show('Logged out', {
+          cssClass: 'ui-messages-info',
+          timeout: 3000
+        });
+        this.router.navigate(['/login']);
+      }
     });
-    this.router.navigate(['/login']);
+    // this.authService.logout();
+    // this.flashMessagesService.show('Logged out', {
+    //   cssClass: 'ui-messages-info',
+    //   timeout: 3000
+    // });
+    // this.router.navigate(['/login']);
     return false;
   }
 

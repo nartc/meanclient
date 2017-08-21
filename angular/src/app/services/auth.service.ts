@@ -45,8 +45,8 @@ export class AuthService {
     this.authToken = this.localStorageService.fetchValueFromKey('id_token');
   };
 
-  loadCurrentUser(): void {
-    this.currentUser = JSON.parse(this.localStorageService.fetchValueFromKey('user'));
+  loadCurrentUser(): User {
+    return this.currentUser = JSON.parse(this.localStorageService.fetchValueFromKey('user'));
   };
 
   isLoggedIn(): boolean {
