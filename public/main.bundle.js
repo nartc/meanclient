@@ -1696,7 +1696,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var HttpService = HttpService_1 = (function () {
-    //   public static url = "http://"+ HttpService.domain;
     function HttpService(http) {
         this.http = http;
     }
@@ -1747,7 +1746,8 @@ var HttpService = HttpService_1 = (function () {
 HttpService.host = "localhost";
 HttpService.port = 8080;
 HttpService.domain = "mean-auth-ct.herokuapp.com";
-HttpService.url = "http://" + HttpService_1.host + ":" + HttpService_1.port;
+//   public static url = "http://" + HttpService.host + ":" + HttpService.port;  
+HttpService.url = "http://" + HttpService_1.domain;
 HttpService = HttpService_1 = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === "function" && _a || Object])
