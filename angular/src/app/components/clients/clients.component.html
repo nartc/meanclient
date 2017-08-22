@@ -19,14 +19,14 @@
   (onRowSelect)="onRowSelect($event)"
 >
   <p-column field="_id" header="ID" [style]="{'width':'25%'}"></p-column>
-  <p-column header="Name" [style]="{'width':'15%'}">
+  <p-column header="Name" [style]="{'width':'20%'}">
     <ng-template let-client="rowData" pTemplate="body">
       <span>{{client.firstName}} {{client.lastName}}</span>
     </ng-template>
   </p-column>
-  <p-column field="email" header="Email" [style]="{'width':'25%'}"></p-column>
+  <p-column field="email" header="Email" [style]="{'width':'28%'}"></p-column>
   <p-column field="phone" header="Phone" [style]="{'width':'15%'}"></p-column>
-  <p-column header="Balance" [style]="{'width':'10%'}">
+  <p-column header="Balance" [style]="{'width':'12%'}">
     <ng-template let-col let-client="rowData" pTemplate="body">
       <span>{{client.balance | currency:'USD':true}}</span>
     </ng-template>
