@@ -10,6 +10,7 @@ const UserSchema = mongoose.Schema({
     },
     email: {
         type: String,
+        set: toLower,
         required: true
     },
     password: {
@@ -17,6 +18,10 @@ const UserSchema = mongoose.Schema({
         required: true
     }
 });
+
+function toLower(str) {
+    return str.toLowerCase();
+}
 
 const User = module.exports = mongoose.model('User', UserSchema);
 

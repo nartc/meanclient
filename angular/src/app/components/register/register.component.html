@@ -23,9 +23,6 @@
             <span *ngIf="userForm.controls['name'].errors['required']">Name is required</span>
             <span *ngIf="userForm.controls['name'].errors['minlength']">Must be at least 6 characters</span>
           </div>
-          <div id="checkValid" *ngIf="userForm.controls['name'].valid">
-            <i class="fa fa-check-circle-o fa-2x"></i>
-          </div>
         </div>
       </div>
       <div class="ui-grid-row">
@@ -45,9 +42,6 @@
             <i class="fa fa-close"></i>
             <span *ngIf="userForm.controls['email'].errors['required']">Email is required</span>
             <span *ngIf="userForm.controls['email'].errors['pattern']">Must be in valid email format</span>
-          </div>
-          <div id="checkValid" *ngIf="userForm.controls['email'].valid">
-            <i class="fa fa-check-circle-o fa-2x"></i>
           </div>
         </div>
       </div>
@@ -69,18 +63,12 @@
               <span *ngIf="userForm.controls['password'].errors['required']">Password is required</span>
               <span *ngIf="userForm.controls['password'].errors['minlength']">Must be at least 6 characters</span>
             </div>
-            <div id="checkValid" *ngIf="userForm.controls['password'].valid">
-              <i class="fa fa-check-circle-o fa-2x"></i>
-            </div>
           </div>
         </div>
         <div class="ui-grid-row">
           <div class="ui-grid-col-2"></div>
           <div class="ui-grid-col-6">
               <button pButton type="submit" label="Submit" [disabled]="!userForm.valid"></button>
-          </div>
-          <div id="checkValid" class="ui-grid-col-4" *ngIf="userForm.valid">
-            <i class="fa fa-check-circle-o fa-2x"></i>
           </div>
         </div>
     </div>

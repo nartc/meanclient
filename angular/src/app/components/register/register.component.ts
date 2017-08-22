@@ -60,9 +60,10 @@ export class RegisterComponent implements OnInit {
          this.registerMessages = [];
          this.registerMessages.push({
           severity: 'error',
-          summary: 'Register Error',
-          detail: 'Failed to register'
+          summary: 'Registration Error',
+          detail: data.msg
          });
+         this.userForm.controls['email'].reset();
          this.router.navigate(['/register']);
        }
      },

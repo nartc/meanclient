@@ -8,8 +8,8 @@ export class HttpService {
   public static host = "localhost";
   public static port = 3000;
   public static domain = "mean-auth-ct.herokuapp.com"
-//public static url = "http://" + HttpService.host + ":" + HttpService.port;  
-  public static url = "http://"+ HttpService.domain;
+  public static url = "http://" + HttpService.host + ":" + HttpService.port;  
+//   public static url = "http://"+ HttpService.domain;
 
   constructor(
     public http: Http

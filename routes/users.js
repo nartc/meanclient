@@ -16,21 +16,39 @@ router.post('/register', (req, res, next) => {
         password: req.body.password
     });
 
-    User.addUser(newUser, (err, user) => {
+    User.find({'email': newUser.email}, (err, user) => {
         if(err) {
-            res.json({
-                success: false,
-                msg: 'Failed to register User',
-                err: err
-            });
+            console.log(err);
+        }
+
+        if(user.length > 0) {
+            if(user[0].email === newUser.email) {
+                console.log(user[0].email);
+                console.log(newUser.email);
+                console.log(user[0].email === newUser.email);
+                res.json({
+                    success: false,
+                    msg: 'Email "'+newUser.email+'" is already existed'
+                });
+            } 
         } else {
-            res.json({
-                success: true,
-                msg: 'New User registered',
-                user: user
+            User.addUser(newUser, (err, user) => {
+                if(err) {
+                    res.json({
+                        success: false,
+                        msg: 'Failed to register User',
+                        err: err
+                    });
+                } else {
+                    res.json({
+                        success: true,
+                        msg: 'New User registered',
+                        user: user
+                    });
+                }
             });
         }
-    })
+    });
 });
 
 //Authenticate
