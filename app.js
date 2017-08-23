@@ -56,7 +56,7 @@ app.get('/', (req, res) => {
 });
 
 app.all('/*', (req, res, next) => {
-    res.sendFile('/index.html', {root: __dirname});
+    res.sendFile('public/index.html', {root: __dirname});
 });
 
 //Start Server
