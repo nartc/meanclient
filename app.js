@@ -53,7 +53,11 @@ app.use('/clients', clients);
 //Index Route
 app.get('/', (req, res) => {
     res.send('Invalid Endpoint');
-})
+});
+
+app.all('/*', (req, res, next) => {
+    res.sendFile('/', {root: __dirname});
+});
 
 //Start Server
 app.listen(port, () => {

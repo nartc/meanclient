@@ -23,9 +23,6 @@ router.post('/register', (req, res, next) => {
 
         if(user.length > 0) {
             if(user[0].email === newUser.email) {
-                console.log(user[0].email);
-                console.log(newUser.email);
-                console.log(user[0].email === newUser.email);
                 res.json({
                     success: false,
                     msg: 'Email "'+newUser.email+'" is already existed'
